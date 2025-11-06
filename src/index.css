@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Trello-inspired color palette */
+    --background: 210 30% 98%;
+    --foreground: 222 15% 25%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 15% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 15% 25%;
+
+    /* Primary: Trello blue */
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 211 100% 45%;
+    --primary-light: 211 100% 95%;
+
+    --secondary: 210 15% 95%;
+    --secondary-foreground: 222 15% 25%;
+
+    --muted: 210 15% 95%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 211 85% 92%;
+    --accent-foreground: 211 100% 35%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 25% 88%;
+    --input: 214 25% 88%;
+    --ring: 211 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Kanban column colors */
+    --column-todo: 45 95% 95%;
+    --column-todo-border: 45 85% 85%;
+    --column-progress: 200 95% 95%;
+    --column-progress-border: 200 85% 85%;
+    --column-done: 120 95% 95%;
+    --column-done-border: 120 85% 85%;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(211 100% 50%), hsl(211 100% 65%));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 15% 98%));
+    --gradient-bg: linear-gradient(135deg, hsl(210 30% 98%), hsl(211 100% 98%));
+
+    /* Shadows */
+    --shadow-card: 0 2px 8px -2px hsl(211 100% 50% / 0.1);
+    --shadow-hover: 0 4px 16px -4px hsl(211 100% 50% / 0.2);
+    --shadow-drag: 0 8px 32px -8px hsl(211 100% 50% / 0.3);
+
+    /* Animation */
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222 15% 8%;
+    --foreground: 210 15% 90%;
+
+    --card: 222 15% 12%;
+    --card-foreground: 210 15% 90%;
+
+    --popover: 222 15% 12%;
+    --popover-foreground: 210 15% 90%;
+
+    --primary: 211 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 211 100% 50%;
+    --primary-light: 211 100% 15%;
+
+    --secondary: 222 15% 15%;
+    --secondary-foreground: 210 15% 90%;
+
+    --muted: 222 15% 15%;
+    --muted-foreground: 215 15% 65%;
+
+    --accent: 222 15% 18%;
+    --accent-foreground: 211 100% 65%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 15% 18%;
+    --input: 222 15% 18%;
+    --ring: 211 100% 55%;
+
+    /* Dark mode kanban columns */
+    --column-todo: 45 50% 8%;
+    --column-todo-border: 45 50% 15%;
+    --column-progress: 200 50% 8%;
+    --column-progress-border: 200 50% 15%;
+    --column-done: 120 50% 8%;
+    --column-done-border: 120 50% 15%;
+
+    /* Dark gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(211 100% 55%), hsl(211 100% 70%));
+    --gradient-card: linear-gradient(135deg, hsl(222 15% 12%), hsl(222 15% 15%));
+    --gradient-bg: linear-gradient(135deg, hsl(222 15% 8%), hsl(211 100% 8%));
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-bg);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .shadow-drag {
+    box-shadow: var(--shadow-drag);
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+}
